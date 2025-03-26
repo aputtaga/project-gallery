@@ -1,0 +1,12 @@
+let x = 10;
+console.log(x);
+let y = x + 5;
+console.log(y);
+let z = y - 2;
+console.log(z);
+let s = z % 3;
+console.log(s);
+let g = s * 3;
+console.log(g);
+let d = g += s;
+console.log(d);

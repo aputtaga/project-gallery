@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Inventory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+
+        input {
+            padding: 8px;
+            width: 200px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .insert-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .clear-inputs-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .show-all-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .clear-display-btn {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .inventory-container {
+            margin-top: 20px;
+        }
+
+        #inventory {
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #inventory p {
+            margin: 5px 0;
+        }
+    </style>
+    <script>
+        
+        class Car {
+            constructor(make, model, year, color) {
+                this.make = make;
+                this.model = model;
+                this.year = year;
+                this.color = color;
+            }
+
+            
+            description() {
+                return `Inventory: ${this.year} ${this.make} ${this.model} in ${this.color}`;
+            }
+        }
+
+        
+        let cars = [];
+
+
+        function addCar() {
+            let make = document.getElementById("make").value;
+            let model = document.getElementById("model").value;
+            let year = document.getElementById("year").value;
+            let color = document.getElementById("color").value;
+
+            
+            let newCar = new Car(make, model, year, color);
+
+            
+            cars.push(newCar);
+
+            
+            console.log(newCar.description());
+
+            
+            displayCars();
+
+            
+            clearInputs();
+        }
+
+        
+        function displayCars() {
+            const inventoryDiv = document.getElementById("inventory");
+            inventoryDiv.innerHTML = "";  
+
+            cars.forEach(car => {
+                let carDescription = document.createElement("p");
+                carDescription.textContent = car.description();
+                inventoryDiv.appendChild(carDescription);
+            });
+        }
+
+        
+        function clearInputs() {
+            document.getElementById("make").value = '';
+            document.getElementById("model").value = '';
+            document.getElementById("year").value = '';
+            document.getElementById("color").value = '';
+        }
+
+        
+        function clearDisplay() {
+            const inventoryDiv = document.getElementById("inventory");
+            inventoryDiv.innerHTML = '';  
+        }
+    </script>
+</head>
+<body>
+    <h1>Car Inventory</h1>
+
+    <div class="form-container">
+        <form onsubmit="event.preventDefault(); addCar();">
+            <label for="model">Enter Model:</label>
+            <input id="model" type="text" required><br>
+
+            <label for="year">Enter Year:</label>
+            <input id="year" type="text" required><br>
+
+            <label for="color">Enter Color:</label>
+            <input id="color" type="text" required><br>
+
+            <label for="make">Enter Make:</label>
+            <input id="make" type="text" required><br>
+
+            <button type="submit" class="insert-btn">Insert Info</button>
+            <button type="button" class="clear-inputs-btn" onclick="clearInputs()">Clear Inputs</button>
+            <button type="button" class="show-all-btn" onclick="displayCars()">Show All</button>
+            <button type="button" class="clear-display-btn" onclick="clearDisplay()">Clear Display</button>
+        </form>
+    </div>
+
+    <div class="inventory-container">
+        <h2>Inventory:</h2>
+        <div id="inventory">
+            
+        </div>
+    </div>
+</body>
+</html>

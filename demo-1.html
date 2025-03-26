@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input placeholder="enter A" id=" input_a"/>
+        <input placeholder="enter B" id="input_b"/>
+        <button onclick="generate_random_value();">Generate random value</button>
+        <div id="output_div"></div>
+        <script>
+            function generate_random_value(){
+                let min_value = parseInt(document.getElementById("input_a").value);
+                let max_value = parseInt(document.getElementById("input_b").value);
+
+                let random_value = Math.floor(max_value - min_value) * Math.random(max_value - min_value);
+                document.getElementById("output_div").innerHTML = random_value;
+                x = Math.random();
+                console.log(x);
+
+            }
+        </script>
+    </body>
+</html>
